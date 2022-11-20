@@ -249,6 +249,8 @@ The same whitespace limitation is shared with `OverloadedRecordDot` which requir
 Basic usage:
 
 ```hs
+{-# LANGUAGE OverloadedRecordDot #-}
+
 myName1, myName2, myName3 :: String
 myName1 = view #name me -- function style
 myName2 = me ^. #name   -- operator style
@@ -279,6 +281,8 @@ When using lenses and `NoFieldSelectors`, you can safely create this kind of
 data type:
 
 ```hs
+{-# LANGUAGE NoFieldSelectors #-}
+
 data Interaction
   = InteractionChatInput
     { id :: Int
