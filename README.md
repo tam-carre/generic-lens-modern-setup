@@ -15,7 +15,7 @@ which uses Template Haskell and `makeFields/makeFieldsNoPrefix`.
 
 ## Feature comparison
 
-Here is a comparison of the TH solution detailed in the [2017 gist](https://gist.github.com/mtesseract/1b69087b0aeeb6ddd7023ff05f7b7e68).
+Here is a comparison of this and the TH solution detailed in the [2017 gist](https://gist.github.com/mtesseract/1b69087b0aeeb6ddd7023ff05f7b7e68).
 
 |   | generic-lens | TH |
 | - | - | - |
