@@ -17,15 +17,15 @@ which uses Template Haskell and `makeFields/makeFieldsNoPrefix`.
 
 Here is a comparison of the TH solution detailed in the [2017 gist](https://gist.github.com/mtesseract/1b69087b0aeeb6ddd7023ff05f7b7e68).
 
-|   | generic-lens | TH | notes
+|   | generic-lens | TH |
 | - | - | - |
-| Optics benefits |✔️ |✔️ | |
-| Duplicate fields |✔️ |⚠️ (requires centralizing lens declarations)| |
-| Decentralized optic definitions |✔️ |✔️ | |
-| Unnamespaced record field names |✔️ |⚠️ (Possible with custom TH functions and namespaced lenses) | Global namespace pollution avoided with `NoFieldSelectors` |
-| Unnamespaced lenses |⛔(lenses start with #) |⚠️ (possible but clutter global namespace) | |
-| Whitespace-free style allowed |⛔ |✔️ | |
-| Safe multi-constructor record types |✔️ |✔️ | |
+| Optics benefits |✔️ |✔️ |
+| Duplicate fields |✔️ |⚠️ (requires centralizing lens declarations)|
+| Decentralized optic definitions |✔️ |✔️ |
+| Unnamespaced record field names |✔️ |⚠️ (Possible with custom TH functions and namespaced lenses) |
+| Unnamespaced lenses |⛔(lenses start with #) |⚠️ (possible but clutter global namespace) |
+| Whitespace-free style allowed |⛔ |✔️ |
+| Safe multi-constructor record types |✔️ |✔️ |
 
 If you want to know more about what a criterion means, check out [What is
 the perfect optics setup?](./What_is_the_perfect_optics_setup.md).
