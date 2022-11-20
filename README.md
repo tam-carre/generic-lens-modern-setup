@@ -21,7 +21,7 @@ Here is a comparison of this and the TH solution detailed in the [2017 gist](htt
 | - | - | - |
 | Optics benefits |✔️ |✔️ |
 | Duplicate fields |✔️ |⚠️ (requires centralizing lens declarations)|
-| Decentralized optic definitions |✔️ |✔️ |
+| Decentralized optic definitions |✔️ |⚠️ (incompatible with duplicate fields)|
 | Unnamespaced record field names |✔️ |⚠️ (possible with custom TH functions and namespaced lenses) |
 | Unnamespaced lenses |⛔ (lenses start with #) |⚠️ (possible but clutter global namespace) |
 | Whitespace-free style allowed (`record^.lens1.lens2`) |⛔ |✔️ |
