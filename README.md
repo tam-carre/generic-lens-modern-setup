@@ -30,7 +30,7 @@ Here is a comparison of this and the TH solution detailed in the [2017 gist](htt
 If you want to know more about what a criterion means, check out [What is
 the perfect optics setup?](./What_is_the_perfect_optics_setup.md).
 
-It's possible to mix and mash: use `generic-lens` by default but use TH for safe multi-constructor record types.
+It's possible to mix and match: use `generic-lens` by default but use TH for safe multi-constructor record types.
 
 ## Usage
 
