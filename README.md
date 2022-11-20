@@ -273,6 +273,8 @@ This style is also possible but uses the raw record fields and hence requires
 maybeMyStreet4 = Just me <&> (street . address)
 ```
 
+Note the reversed order (`street . address` not `#address . #street`).
+
 ## Sum types and safe multiconstructor record types
 
 When using lenses and `NoFieldSelectors`, you can safely create this kind of
