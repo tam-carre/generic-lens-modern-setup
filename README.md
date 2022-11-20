@@ -164,7 +164,7 @@ myDog = Dog "Ein" 0
 myGroup :: Group
 myGroup = Group "Haskellers" 0
 
-myDogWithNewName1, myDogWithNewName2 :: Dog
+myDogWithNewName1 :: Dog
 myDogWithNewName1 = myDog & #name .~ "Ein"
 
 myGroupWithNewName1 :: Group
