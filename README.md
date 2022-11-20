@@ -302,6 +302,7 @@ optics derived from this type are completely safe:
 {-# LANGUAGE DataKinds #-}
 
 import Control.Lens ((^?), preview, _2)
+import Data.Generics.Sum (AsConstructor (_Ctor))
 
 myInteraction :: Interaction
 myInteraction = InteractionButton 0 "This is a button"
