@@ -1,0 +1,31 @@
+cabal-version: 1.12
+
+name:           generic-lens-modern-setup
+version:        0.1.0.0
+homepage:       https://github.com/tam-carre/generic-lens-modern-setup#readme
+bug-reports:    https://github.com/tam-carre/generic-lens-modern-setup/issues
+author:         Tam CARRE
+maintainer:     Tam CARRE
+copyright:      2022 Tam CARRE
+license:        BSD3
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/tam-carre/generic-lens-modern-setup
+
+library
+  exposed-modules:
+      Dog
+      LensDemo
+      UserGroup
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      base
+    , generic-lens
+    , lens
+  default-language: Haskell2010
