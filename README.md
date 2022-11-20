@@ -127,7 +127,7 @@ constructors (e.g. `Dog (..)`).
 
 Here's the minimum required to update fields using `generic-lens`:
 
-```
+```hs
 {-# LANGUAGE OverloadedLabels #-}
 
 import UserGroup (User (User), Address (Address))
