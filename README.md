@@ -24,7 +24,7 @@ Here is a comparison of the TH solution detailed in the [2017 gist](https://gist
 | Decentralized optic definitions |✔️ |✔️ |
 | Unnamespaced record field names |✔️ |⚠️ (possible with custom TH functions and namespaced lenses) |
 | Unnamespaced lenses |⛔ (lenses start with #) |⚠️ (possible but clutter global namespace) |
-| Whitespace-free style allowed |⛔ |✔️ |
+| Whitespace-free style allowed (`record^.lens1.lens2`) |⛔ |✔️ |
 | Safe multi-constructor record types |✔️ |✔️ |
 
 If you want to know more about what a criterion means, check out [What is
