@@ -22,8 +22,8 @@ Here is a comparison of the TH solution detailed in the [2017 gist](https://gist
 | Optics benefits |✔️ |✔️ |
 | Duplicate fields |✔️ |⚠️ (requires centralizing lens declarations)|
 | Decentralized optic definitions |✔️ |✔️ |
-| Unnamespaced record field names |✔️ |⚠️ (Possible with custom TH functions and namespaced lenses) |
-| Unnamespaced lenses |⛔(lenses start with #) |⚠️ (possible but clutter global namespace) |
+| Unnamespaced record field names |✔️ |⚠️ (possible with custom TH functions and namespaced lenses) |
+| Unnamespaced lenses |⛔ (lenses start with #) |⚠️ (possible but clutter global namespace) |
 | Whitespace-free style allowed |⛔ |✔️ |
 | Safe multi-constructor record types |✔️ |✔️ |
 
