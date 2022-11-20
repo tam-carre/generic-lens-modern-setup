@@ -41,7 +41,7 @@ myDogName  = name myDog
 Ideally, we should also be able to name record fields the same as top-level
 functions, e.g. (infamously) `id`.
 
-### 2. Optics defined in the same file as the data types
+### 3. Optics defined in the same file as the data types
 
 The [original gist](https://gist.github.com/mtesseract/1b69087b0aeeb6ddd7023ff05f7b7e68)
 proposes a Template Haskell solution with which you must create all lenses
@@ -53,7 +53,7 @@ of `Module` into `Module.Types` (or `Types.Module`) modules to avoid circular de
 
 [A package exists ostensibly addressing this problem with the original gist](https://github.com/intolerable/shared-fields), but it is unmaintained and I am not sure what it would take to make it work with newer versions of GHC.
 
-### 3. Un-namespaced raw record fields
+### 4. Un-namespaced raw record fields
 
 Template-Haskell solutions for lens generation rely on record fields being
 namespaced with the data type name. For example `personName` instead of `name`, generating a `name` lens. Or `_name`, generating also a `name` lens. However, you still need to deal with those ugly namespaced field names if you want to construct records:
@@ -98,13 +98,13 @@ mkDog firstname lastname =
 printDogAge (Dog { _age }) = putStrLn ("Dog's age is " ++ _age)
 ```
 
-### 4. Allow for un-namespaced lenses
+### 5. Allow for un-namespaced lenses
 
 I want to be able to use lenses like `name` rather than `Lens.name`, `L.name`, `nameL`, or `#name`.
 
 However, this should ideally not pollute the global namespace, e.g. I can both have a lens named `id` as well as the Prelude `id` function.
 
-### 5. Allow for whitespace-free lens composition
+### 6. Allow for whitespace-free lens composition
 
 A common lens code style is as follows:
 
@@ -116,7 +116,7 @@ meWithUppercasedCityName = me & address.city.name %~ Text.toUpper
 
 I would like this style to be allowed in an ideal lens setup.
 
-### 6. Allow for safe multi-constructor record types
+### 7. Allow for safe multi-constructor record types
 
 One lesser-known win of using lenses is that, combined
 with NoFieldSelectors, you can safely define the following datatype:
