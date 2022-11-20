@@ -242,7 +242,7 @@ un-namespaced without polluting the top-level declaration namespace (e.g.
 having an `id` lens that is not ambiguous with `Prelude.id`). I consider
 therefore OverloadedLabels to be the best current compromise.
 
-The same whitespace limitation is shared with `OverloadedRecordDot` which requires that `.` be surrounded by whitespace. Therefore, I suggest always enabling `OverloadedRecordDot` when using `generic-lens`. Here's what that looks like:
+The same whitespace limitation is shared with `OverloadedRecordDot` which requires that `(.)` (composition operator) be surrounded by whitespace. Therefore, I suggest always enabling `OverloadedRecordDot` when using `generic-lens`. Here's what that looks like:
 
 ## Getters
 
