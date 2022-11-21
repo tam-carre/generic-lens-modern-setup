@@ -13,6 +13,8 @@ This is a followup to the 2017 gist [*Working around Haskell's namespace problem
 records*](https://gist.github.com/mtesseract/1b69087b0aeeb6ddd7023ff05f7b7e68)
 which uses Template Haskell and `makeFields/makeFieldsNoPrefix`.
 
+Comments/discussion can be found [on reddit](https://www.reddit.com/r/haskell/comments/z0czfc/the_modern_lens_setup_genericlens/). /u/arybczak gives a few reasons to consider `optics-core` over `generic-lens`.
+
 ## Feature comparison
 
 Here is a comparison of this and the TH solution detailed in the [2017 gist](https://gist.github.com/mtesseract/1b69087b0aeeb6ddd7023ff05f7b7e68).
@@ -25,7 +27,7 @@ Here is a comparison of this and the TH solution detailed in the [2017 gist](htt
 | Unnamespaced record field names |✔️ |⚠️ (possible with custom TH functions and namespaced lenses) |
 | Unnamespaced lenses |⛔ (lenses start with #) |⚠️ (possible but clutter global namespace) |
 | Whitespace-free style allowed (`record^.lens1.lens2`) |⛔ |✔️ |
-| Safe multi-constructor record types |✔️ |✔️ |
+| Safe multi-constructor record types |⚠️ (OverloadedRecordDot is unsafe)|✔️ |
 
 If you want to know more about what a criterion means, check out [What is
 the perfect optics setup?](./What_is_the_perfect_optics_setup.md).
@@ -144,6 +146,10 @@ We demonstrate operator-style using `.~` as well as function-style using `set`.
 Enabling `OverloadedLabels` and importing `Data.Generics.Labels ()` are the two
 key parts.
 
+Note that `Data.Generics.Labels ()` declares orphan instances which can conflict
+with other libraries such as [named](https://hackage.haskell.org/package/named);
+`optics` doesn't have that problem. ([thanks /u/affinehyperplane])[https://www.reddit.com/r/haskell/comments/z0czfc/the_modern_lens_setup_genericlens/ix59uy6/]
+
 Turning on `DuplicateRecordFields`, it is also possible to use the same label
 for different record types, regardless of their provenance:
 
@@ -242,7 +248,9 @@ un-namespaced without polluting the top-level declaration namespace (e.g.
 having an `id` lens that is not ambiguous with `Prelude.id`). I consider
 therefore OverloadedLabels to be the best current compromise.
 
-The same whitespace limitation is shared with `OverloadedRecordDot` which requires that `(.)` (composition operator) be surrounded by whitespace. Therefore, I suggest always enabling `OverloadedRecordDot` when using `generic-lens`. Here's what that looks like:
+The same whitespace limitation is shared with `OverloadedRecordDot` which requires that `(.)` (composition operator) be surrounded by whitespace. Therefore, I suggest always enabling `OverloadedRecordDot` when using `generic-lens` (unless you want partial record fields, which we'll get to).
+
+Here's what that looks like:
 
 ## Getters
 
@@ -304,23 +312,19 @@ optics derived from this type are completely safe:
 {-# LANGUAGE DataKinds #-}
 
 import Control.Lens ((^?), preview, _2)
-import Data.Generics.Sum (AsConstructor (_Ctor))
 
 myInteraction :: Interaction
 myInteraction = InteractionButton 0 "This is a button"
 
 myButtonData1, myButtonData2 :: Maybe String
-myButtonData1 = preview (_Ctor @"InteractionButton" . _2) myInteraction
-myButtonData2 = myInteraction ^? _Ctor @"InteractionButton" . _2
+myButtonData1 = preview (#_InteractionButton . _2) myInteraction
+myButtonData2 = myInteraction ^? #_InteractionButton . _2
 ```
 
-You must first use the prism `_Ctor`, which checks that `myInteraction` is an
-`InteractionButton`. When consuming a prism with `^?` or `preview`, a `Maybe` is
-returned. note that because `_Ctor` focuses *a tuple of the data constructor's
-parameters* instead of a record, `buttonData` is then focused with `_2` rather
+You must first use the prism `_#InteractionButton`. When consuming a prism with `^?` or `preview`, a `Maybe` is returned. Note that because `_#DataConstructorName` focuses *a tuple of the data constructor's parameters* instead of a record, `buttonData` is then focused with `_2` rather
 than `#buttonData`.
 
-Note: it is slightly terser with `makeFields` TH variants, which allow `myInteraction ^? buttonData` of type `Maybe String`.
+**Important**: `OverloadedRecordDot` can still unsafely access partial record fields. If you want to use partial record fields in your codebase, consider disabling `OverloadedRecordDot`.
 
 ## Conclusion
 

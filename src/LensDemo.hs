@@ -153,4 +153,4 @@ myInteraction = InteractionButton 0 "This is a button"
 
 myButtonData1, myButtonData2 :: Maybe String
 myButtonData1 = preview (_Ctor @"InteractionButton" . _2) myInteraction
-myButtonData2 = myInteraction ^? _Ctor @"InteractionButton" . _2
+myButtonData2 = myInteraction ^? #_InteractionButton . _2
