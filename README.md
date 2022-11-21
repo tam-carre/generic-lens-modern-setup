@@ -148,7 +148,7 @@ key parts.
 
 Note that `Data.Generics.Labels ()` declares orphan instances which can conflict
 with other libraries such as [named](https://hackage.haskell.org/package/named);
-`optics` doesn't have that problem. ([thanks /u/affinehyperplane])[https://www.reddit.com/r/haskell/comments/z0czfc/the_modern_lens_setup_genericlens/ix59uy6/]
+`optics` doesn't have that problem. [[Thanks /u/affinehyperplane]](https://www.reddit.com/r/haskell/comments/z0czfc/the_modern_lens_setup_genericlens/ix59uy6/)
 
 Turning on `DuplicateRecordFields`, it is also possible to use the same label
 for different record types, regardless of their provenance:
